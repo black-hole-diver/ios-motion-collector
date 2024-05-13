@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Characteristic" representedClassName="Characteristic" syncable="YES">
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="z" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="toCharacteristicName" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacteristicName" inverseName="toCharacteristic" inverseEntity="CharacteristicName" syncable="YES"/>
+        <relationship name="toSensorData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="toCharacteristic" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <entity name="CharacteristicName" representedClassName="CharacteristicName" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toCharacteristic" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Characteristic" inverseName="toCharacteristicName" inverseEntity="Characteristic" syncable="YES"/>
+    </entity>
+    <entity name="Sensor" representedClassName="Sensor" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="toSensorData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SensorData" inverseName="toSensor" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <entity name="SensorData" representedClassName="SensorData" syncable="YES">
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="toCharacteristic" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Characteristic" inverseName="toSensorData" inverseEntity="Characteristic" syncable="YES"/>
+        <relationship name="toSensor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sensor" inverseName="toSensorData" inverseEntity="Sensor" syncable="YES"/>
+        <relationship name="toSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="toSensorData" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="recordID" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="toSensorData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SensorData" inverseName="toSession" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Characteristic" positionX="-522" positionY="-81" width="128" height="118"/>
+        <element name="CharacteristicName" positionX="-513" positionY="197" width="128" height="73"/>
+        <element name="Sensor" positionX="-72" positionY="45" width="128" height="73"/>
+        <element name="SensorData" positionX="-272" positionY="-90" width="128" height="103"/>
+        <element name="Session" positionX="-288" positionY="117" width="128" height="148"/>
+    </elements>
+</model>
