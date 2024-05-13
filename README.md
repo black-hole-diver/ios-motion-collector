@@ -1,7 +1,5 @@
-# MotionCollector
-iOS app for collecting data from iPhone's motion sensors (gyroscope, magnetometer, accelerometer) and Apple Watch's sensors (gyroscope, accelerometer). Each session could be marked by record id to distinguish what type of session recorded. For example, to mark running session as record id = 0 and walking session as record id = 1. The result could be exported as *.csv file that contains all the sessions. 
-
-There are 3 regimes of working app: collecting data from phone, collecting data from watch and collecting data simultaneously from phone and watch. In the case of second and third regimes record id sets up by Apple Watch's app. **_To run stop/start menu on Apple Watch you need to force touce the main menu._**
+# iOS Motion Collector
+iOS application for collecting data from iApple Watch's sensors (gyroscope, accelerometer). Each session could be marked by record label for example, to mark Bear Walk session as record id = 'Bear' and Spider Climbing session as record id = 'Spider'. The result could be exported as *.csv file that contains all the sessions.
 
 # Screenshots
 <p align="left">
