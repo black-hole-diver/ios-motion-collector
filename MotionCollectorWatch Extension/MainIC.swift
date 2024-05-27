@@ -155,10 +155,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
                 let AccY = deviceMotion!.gravity.y + deviceMotion!.userAcceleration.y
                 let AccZ = deviceMotion!.gravity.z + deviceMotion!.userAcceleration.z
                 
-                let MagX = deviceMotion?.gravity.x ?? 0.0000000
-                let MagY = deviceMotion?.gravity.y ?? 0.0000000
-                let MagZ = deviceMotion?.gravity.z ?? 0.0000000
-                
                 let sensorOutput = SensorOutput()
                 
                 sensorOutput.timeStamp = Date()
@@ -168,9 +164,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
                 sensorOutput.accX = AccX
                 sensorOutput.accY = AccY
                 sensorOutput.accZ = AccZ
-                sensorOutput.magX = MagX
-                sensorOutput.magY = MagY
-                sensorOutput.magZ = MagZ
                 
                 self.sensorOutputs.append(sensorOutput)
                 
@@ -349,5 +342,4 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
-    
 }

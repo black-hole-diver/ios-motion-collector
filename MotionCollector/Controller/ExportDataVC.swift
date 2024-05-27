@@ -1,14 +1,3 @@
-//
-//  ExportDataVC.swift
-//  DataCollector
-//
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-
 import UIKit
 import CoreData
 
@@ -196,7 +185,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let fileName = "Motion-sessions_\(sessionDate).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,timeIntervalSince1970,GyroX,GyroY,GyroZ,AccX,AccY,AccZ,MagX,MagY,MagZ,WatchTimestamp,WatchtImeIntervalSince1970,WatchGyroX,WatchGyroY,WatchGyroZ,WatchAccX,WatchAccY,WatchAccZ,WatchMagX,WatchMagY,WatchMagZ\n"
+        var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,timeIntervalSince1970,gyr_x,gyr_y,gyr_z,acc_x,acc_y,acc_z,WatchTimestamp,WatchtImeIntervalSince1970, gyr_x,gyr_y,gyr_z,acc_x,acc_y,acc_z\n"
         
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
@@ -247,20 +236,18 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     var sensorsInfo2 = ""
                     
                     if  i < SensorOutputs1.count {
-                        sensorsInfo1 = "\(df.string(from: (SensorOutputs1[i].timeStamp as Date?)!)),\(String(describing: SensorOutputs1[i].timeStamp!.timeIntervalSince1970)),\(String(describing: SensorOutputs1[i].gyroX!)),\(String(describing: SensorOutputs1[i].gyroY!)),\(String(describing: SensorOutputs1[i].gyroZ!)),\(String(describing: SensorOutputs1[i].accX!)),\(String(describing: SensorOutputs1[i].accY!)),\(String(describing: SensorOutputs1[i].accZ!)),\(String(describing: SensorOutputs1[i].magX!)),\(String(describing: SensorOutputs1[i].magY!)),\(String(describing: SensorOutputs1[i].magZ!)),"
+                        sensorsInfo1 = "\(df.string(from: (SensorOutputs1[i].timeStamp as Date?)!)),\(String(describing: SensorOutputs1[i].timeStamp!.timeIntervalSince1970)),\(String(describing: SensorOutputs1[i].gyroX!)),\(String(describing: SensorOutputs1[i].gyroY!)),\(String(describing: SensorOutputs1[i].gyroZ!)),\(String(describing: SensorOutputs1[i].accX!)),\(String(describing: SensorOutputs1[i].accY!)),\(String(describing: SensorOutputs1[i].accZ!)),"
                     }
                     
                     if i < SensorOutputs2.count {
                         sensorsInfo2 = "\(df.string(from: (SensorOutputs2[i].timeStamp as Date?)!)),\(String(describing: SensorOutputs2[i].timeStamp!.timeIntervalSince1970)),\(String(describing: SensorOutputs2[i].gyroX!)),\(String(describing: SensorOutputs2[i].gyroY!)),\(String(describing: SensorOutputs2[i].gyroZ!)),\(String(describing: SensorOutputs2[i].accX!)),\(String(describing: SensorOutputs2[i].accY!)),\(String(describing: SensorOutputs2[i].accZ!)),"
                     }
                     
-                    //,\(String(describing: SensorOutputs2[i].magX!)),\(String(describing: SensorOutputs2[i].magY!)),\(String(describing: SensorOutputs2[i].magZ!))
-                    
                     if sensorsInfo1 == "" {
-                        sensorsInfo1 = ",,,,,,,,,,,"
+                        sensorsInfo1 = ",,,,,,,,"
                     }
                     if sensorsInfo2 == "" {
-                        sensorsInfo2 = ",,,,,,,,,,,,"
+                        sensorsInfo2 = ",,,,,,"
                     }
                     
                     
@@ -272,7 +259,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 }
                 
                 
-            }// for sessions
+            }
             
             
             do {
@@ -297,7 +284,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             present(activityController, animated: true, completion: nil)
         }
         
-    } // export Pressed
+    }
     
     func getSensorOutput(sensorData: SensorData) -> SensorOutput {
         
@@ -318,10 +305,6 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 sensorOutput.accY = characteristic.y
                 sensorOutput.accZ = characteristic.z
                 
-            } else if characteristic.toCharacteristicName?.name == "Mag" {
-                sensorOutput.magX = characteristic.x
-                sensorOutput.magY = characteristic.y
-                sensorOutput.magZ = characteristic.z
             }
             
         }

@@ -1,17 +1,8 @@
-//
-//  RecordIDVC.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
 import UIKit
 
 protocol RecordIDVCDelegate: class {
     func recordIDChangedNumberSettingsDelegate(_ number: Int)
 }
-
 
 class RecordIDVC: UITableViewController {
     
@@ -21,8 +12,6 @@ class RecordIDVC: UITableViewController {
     
     weak var delegate: RecordIDVCDelegate?
     
-    
-    // MARK - appearance
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,9 +23,6 @@ class RecordIDVC: UITableViewController {
         }
     }
     
-    
-    
-    // MARK - tableview delegates
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -85,11 +71,7 @@ class RecordIDVC: UITableViewController {
         
     }
     
-    
-    
-    // MARK - other
     func setCheckmark (checkmark: Bool, row: Int) {
-        
         guard let cell = tableView.cellForRow(at: IndexPath(item: row, section: 0)) else {return}
         
         if checkmark {
