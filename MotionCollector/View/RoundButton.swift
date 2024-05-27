@@ -1,21 +1,9 @@
-//
-//  RoundButton.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-//
-
 import UIKit
 
-
+// MARK: Set up Button UI
 @IBDesignable
 class CircleButton: UIButton {
-    
-    @IBInspectable var isRound: Bool = false {
-        
+    @IBInspectable var isRound: Bool = true {
         didSet {
             if isRound {
                 setupView()
@@ -32,7 +20,7 @@ class CircleButton: UIButton {
     func setupView() {
         self.layer.cornerRadius = self.bounds.size.width / 2.0
         self.clipsToBounds = true
+        self.backgroundColor = .red
     }
-    
 }
 

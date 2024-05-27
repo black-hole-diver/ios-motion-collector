@@ -1,16 +1,7 @@
-//
-//  Session+CoreDataProperties.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-
 import Foundation
 import CoreData
 
-
+// MARK: Session Extension
 extension Session {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Session> {
@@ -27,7 +18,7 @@ extension Session {
 
 }
 
-// MARK: Generated accessors for toSensorData
+// MARK: Methods to create accessors for toSensorData
 extension Session {
 
     @objc(addToSensorDataObject:)

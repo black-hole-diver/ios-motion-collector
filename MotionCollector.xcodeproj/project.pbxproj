@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26B3B23E2BF28391007BCF3F /* icon-1.webp in Resources */ = {isa = PBXBuildFile; fileRef = 26B3B23D2BF28391007BCF3F /* icon-1.webp */; };
 		DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */; };
 		DC23B877207BDE5600CC813F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
@@ -20,7 +19,6 @@
 		DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF712071FE0200B34F13 /* ComplicationController.swift */; };
 		DC39DF742071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF732071FE0200B34F13 /* Assets.xcassets */; };
 		DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */; };
-		DC646AC120880BC100421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC020880BC100421F97 /* HealthKit.framework */; };
 		DC646AC320880BDF00421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC220880BDF00421F97 /* HealthKit.framework */; };
 		DC6A3F6B208F853800B12C60 /* Characteristic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F61208F853800B12C60 /* Characteristic+CoreDataClass.swift */; };
 		DC6A3F6C208F853800B12C60 /* Characteristic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F62208F853800B12C60 /* Characteristic+CoreDataProperties.swift */; };
@@ -91,7 +89,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		26B3B23D2BF28391007BCF3F /* icon-1.webp */ = {isa = PBXFileReference; lastKnownFileType = file; name = "icon-1.webp"; path = "../../../Downloads/icon-1.webp"; sourceTree = "<group>"; };
 		DC119ECD204ABFA00035ED8F /* SensorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOutput.swift; sourceTree = "<group>"; };
 		DC23343D204386E900232A8A /* DataCollector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCollector.xcdatamodel; sourceTree = "<group>"; };
 		DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollectorWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +104,6 @@
 		DC39DF752071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DC646ABE20880BC100421F97 /* MotionCollectorWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MotionCollectorWatch Extension.entitlements"; sourceTree = "<group>"; };
-		DC646AC020880BC100421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		DC646AC220880BDF00421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DC646AC420880BDF00421F97 /* MotionCollector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MotionCollector.entitlements; sourceTree = "<group>"; };
 		DC6A3F61208F853800B12C60 /* Characteristic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characteristic+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -142,7 +138,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC646AC120880BC100421F97 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				DC646AC220880BDF00421F97 /* HealthKit.framework */,
-				DC646AC020880BC100421F97 /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -280,7 +274,6 @@
 		DCB7BC08203A58C5001F1E9F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				26B3B23D2BF28391007BCF3F /* icon-1.webp */,
 				DCB7BBFF203A5688001F1E9F /* Info.plist */,
 				DCB7BBFA203A5688001F1E9F /* Assets.xcassets */,
 			);
@@ -427,7 +420,6 @@
 			files = (
 				DCB7BBFE203A5688001F1E9F /* LaunchScreen.storyboard in Resources */,
 				DCB7BBFB203A5688001F1E9F /* Assets.xcassets in Resources */,
-				26B3B23E2BF28391007BCF3F /* icon-1.webp in Resources */,
 				DCB7BBF6203A5688001F1E9F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,15 +1,7 @@
-//
-//  CharacteristicName+CoreDataProperties.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
 import Foundation
 import CoreData
 
-
+// MARK: CharacteristicName Extension
 extension CharacteristicName {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CharacteristicName> {
@@ -21,9 +13,9 @@ extension CharacteristicName {
 
 }
 
-// MARK: Generated accessors for toCharacteristic
+// MARK: Methods to create accessors for toCharacteristic
 extension CharacteristicName {
-
+    
     @objc(addToCharacteristicObject:)
     @NSManaged public func addToToCharacteristic(_ value: Characteristic)
 

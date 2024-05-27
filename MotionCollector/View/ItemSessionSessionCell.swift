@@ -1,15 +1,6 @@
-//
-//  ItemCell.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-//
-
 import UIKit
 
+// MARK: A custom UITableViewCell to display session info
 class ItemSessionCell: UITableViewCell {
     
     @IBOutlet weak var idSessionLabel: UILabel!
@@ -20,14 +11,11 @@ class ItemSessionCell: UITableViewCell {
     @IBOutlet weak var iPhoneIcon: UIImageView!
     @IBOutlet weak var appleWatchIcon: UIImageView!
     
-    
+    // MARK: Configures the cell from Session object
     func configureCell (session: Session){
-        
-        // Format dateTime
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy  HH:mm:ss"
         let myString = formatter.string(from: session.date! as Date)
-        
         
         idSessionLabel.text = "\(session.id)"
         dateSessionLabel.text = myString
@@ -44,5 +32,4 @@ class ItemSessionCell: UITableViewCell {
             appleWatchIcon.isHidden = false
         }
     }
-    
 }

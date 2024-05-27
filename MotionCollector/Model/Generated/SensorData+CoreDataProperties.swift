@@ -1,18 +1,8 @@
-//
-//  SensorData+CoreDataProperties.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-
 import Foundation
 import CoreData
 
-
+// MARK: SensorData Extension
 extension SensorData {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SensorData> {
         return NSFetchRequest<SensorData>(entityName: "SensorData")
     }
@@ -24,7 +14,7 @@ extension SensorData {
 
 }
 
-// MARK: Generated accessors for toCharacteristic
+// MARK: Methods to create accessors for toCharacteristic
 extension SensorData {
 
     @objc(addToCharacteristicObject:)

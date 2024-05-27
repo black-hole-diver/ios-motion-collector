@@ -1,21 +1,13 @@
-//
-//  InterfaceController.swift
-//  MotionCollectorWatch Extension
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
 import WatchKit
 import Foundation
 import CoreMotion
 import HealthKit
 import WatchConnectivity
 
-
+// MARK: Main interface controller for the watch
 class MainIC: WKInterfaceController, WCSessionDelegate {
     
-    // Statuses
+    // MARK: Status of the watch application
     enum Status {
         case waiting
         case recording
@@ -39,17 +31,17 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    // Outlets
+    // MARK: The outlets of the UI
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var recIDLabel: WKInterfaceLabel!
     @IBOutlet var recNumberPicker: WKInterfacePicker!
     @IBOutlet var recordDataFromPhoneSwitch: WKInterfaceSwitch!
     
-    // Constants
+    // MARK: Constants
     let IDsAmount = 20
-    let currentFrequency: Int = 60
+    let currentFrequency: Int = 50
     
-    // For session saving
+    // MARK: Variables for session saving
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
@@ -57,21 +49,20 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     var recordID: Int = 0
     var currentSessionDate: NSDate = NSDate()
     
-    // For motion getting
+    // MARK: For getting motion data
     let motion = CMMotionManager()
     let queue = OperationQueue()
     
-    // For background work
+    // MARK: For back-end HealthKit
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     
     
-    // MARK - WKInterfaceController events
-    
+    // MARK: Events for WatchKit interface controller
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // prepare recNumberPicker
+        // MARK: prepare record number picker
         var items = [WKPickerItem]()
         for i in 0..<IDsAmount {
             let item = WKPickerItem()
@@ -80,18 +71,14 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         }
         recNumberPicker.setItems(items)
         
-        
-        // needs to be implemented
-        // findLastSessionId()
-        
-        // Serial queue for sample handling and calculations.
+        // MARK: Serial queue for sample handling and calculations.
         queue.maxConcurrentOperationCount = 1
         queue.name = "MotionManagerQueue"
         
         status = .waiting
         
         
-        // Configure WCSessionDelegate objects
+        // MARK: Configure WCSessionDelegate objects
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -99,23 +86,22 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    // MARK: Called when watch view controller is about to be visible to user
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
     
+    // MARK: Called when watch view controller is no longer visible
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
     
     
-    // MARK - Control work of getting motion Data
-    
+    // MARK: Gets motion data
     func startGettingData() {
         
-        // send info to start data collecting on phone
+        // MARK: Sends information to start data collection on phone
         if (isRecordDataFromPhone) {
             let WCsession = WCSession.default
             if WCsession.isReachable {
@@ -129,12 +115,12 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             }
         }
         
-        // If we have already started the workout, then do nothing.
+        // MARK: If we have already started the workout, then do nothing.
         if (session != nil) {
             return
         }
         
-        // Configure the workout session.
+        // MARK: Configure the workout session.
         let workoutConfiguration = HKWorkoutConfiguration()
         workoutConfiguration.activityType = .walking
         workoutConfiguration.locationType = .outdoor
@@ -145,10 +131,10 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             fatalError("Unable to create the workout session!")
         }
         
-        // Start the workout session and device motion updates.
+        // MARK: Start the workout session and device motion updates.
         healthStore.start(session!)
         
-        // Check motion availability
+        // MARK: Check motion availability
         if !motion.isDeviceMotionAvailable {
             print("Device Motion is not available.")
             return
@@ -161,8 +147,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             }
             
             if deviceMotion != nil {
-                
-                // let currenTime = self.returnCurrentTime()
                 let GyroX = deviceMotion!.rotationRate.x
                 let GyroY = deviceMotion!.rotationRate.y
                 let GyroZ = deviceMotion!.rotationRate.z
@@ -174,12 +158,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
                 let MagX = deviceMotion?.gravity.x ?? 0.0000000
                 let MagY = deviceMotion?.gravity.y ?? 0.0000000
                 let MagZ = deviceMotion?.gravity.z ?? 0.0000000
-
-                
-                // print ( "WatchGyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                // print ( "WatchAcc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                // print ( "WatchGrav : \(currentTime) \(MagX), \(MagY), \(MagZ)")
-                
                 
                 let sensorOutput = SensorOutput()
                 
@@ -200,19 +178,20 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    // MARK: Stop getting motion data
     func stopGettingData(handler: @escaping(_ finishedGettingData: Bool) -> ()) {
         
-        // If we have already stopped the workout, then do nothing.
+        // MARK: If the workout is stopped, then do nothing.
         if (session == nil) {
             return
         }
         
-        // Stop the device motion updates and workout session.
+        // MARK: Stop the device motion updates and workout session.
         motion.stopDeviceMotionUpdates()
         healthStore.end(session!)
         print("Ended health session")
         
-        // send info to start data collecting on phone
+        // MARK: Send information to start data collecting on phone
         if (isRecordDataFromPhone) {
             let WCsession = WCSession.default
             if WCsession.isReachable {
@@ -226,13 +205,14 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             }
         }
         
-        // Clear the workout session.
+        // MARK: Clear the workout session.
         session = nil
         
         handler(true)
     }
     
     
+    // MARK: Return the current time in hour:minutes:seconds:nanoseconds format
     func returnCurrentTime() -> String {
         let date = Date()
         let calendar = Calendar.current
@@ -248,29 +228,25 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     
     
-    // MARK - Action controlls
-    
+    // MARK: Action control for start button force push
     @IBAction func startButtonPressed() {
-        // check status
         if status == Status.recording { return }
         
         startGettingData()
         status = .recording
         
-        // Start session recording
         currentSessionDate = NSDate()
     }
     
+    // MARK: Action control for stop button force push
     @IBAction func stopButtonPressed() {
-        
-        // check status
         if status == Status.waiting { return }
         
         timer.stop()
         
         stopGettingData { (finishedGettingData) in
             
-            // Pack up data into container
+            // MARK: Puts collected data into SessionContainer
             let sessionContainer = SessionContainer()
             sessionContainer.nextSessionid = self.nextSessionid
             sessionContainer.currentSessionDate = self.currentSessionDate as Date
@@ -279,42 +255,41 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             sessionContainer.duration = self.recordTime
             sessionContainer.sensorOutputs = self.sensorOutputs
             
-            // Archiving data
+            // MARK: Archives the session container
             let mutableData = NSMutableData()
             let archiver = NSKeyedArchiver(forWritingWith: mutableData)
             try! archiver.encodeEncodable(sessionContainer, forKey: NSKeyedArchiveRootObjectKey)
             archiver.finishEncoding()
             
             
-            // Saving data to file
+            // MARK: Saves data to file
             let sourceURL = self.getDocumentDirectory().appendingPathComponent("saveFile")
             mutableData.write(to: sourceURL, atomically: true)
             print ("Saved file")
             
             
-            // Sending file
+            // MARK: Sends file to iPhone
             let session = WCSession.default
             if session.activationState == .activated {
                 
-                // create a URL from where the file is/will be saved
+                // MARK: Create a URL from where the file will be saved
                 let fm = FileManager.default
                 let sourceURL = self.getDocumentDirectory().appendingPathComponent("saveFile")
                 
                 if !fm.fileExists(atPath: sourceURL.path) {
-                    
-                    // the file doesn't exist - create it now
+                    // MARK: If the file doesn't exist - create it now
                     try? "Hello from Apple Watch!".write(to: sourceURL, atomically: true, encoding: String.Encoding.utf8)
                     
                 }
                 
                 print ("Starting sending file")
-                // the file exists now; send it across the session
+                // MARK: the file exists now; send it across the session
                 session.transferFile(sourceURL, metadata: nil)
                 print ("File sent")
             }
             
             
-            // Preparing watch for new session
+            // MARK: Prepares the watch for the next session
             self.sensorOutputs.removeAll()
             self.nextSessionid += 1
             

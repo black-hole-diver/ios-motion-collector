@@ -2,14 +2,9 @@
 //  SensorOutput.swift
 //  iOS Motion Collector
 //
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
-
 import Foundation
 
-
+// MARK: Sensor output containing gyroscope x,y,z and accelerometer x,y,z
 class SensorOutput: Codable {
     
     var timeStamp: Date?

@@ -1,11 +1,3 @@
-//
-//  CollectingDataVC.swift
-//  iOS Motion Collector
-//
-//  ELTE BSc Thesis "Machine Learning Based Real-time Movement Detection of Children (2024)"
-//  @author Wittawin Panta
-//  @version 1.50 13 May 2024
-
 import UIKit
 import CoreMotion
 import CoreData
@@ -46,14 +38,14 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     weak var settingsTableVC:SettingsTableVC?
     
     
-    // Controlls outlets
+    // MARK: UI elements
     @IBOutlet weak var recordTimeLabel: UILabel!
     @IBOutlet weak var recordStatusImage: UIImageView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
     
-    // For session saving
+    // MARK: Variables for session saving
     var currentSession: Session? = nil
     var nextSessionid: Int = 0
     var recordTime: String = ""
@@ -63,17 +55,17 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     var sensors = [Sensor]()
     
     
-    // Record stopwatch
+    // MARK: Record stopwatch
     var startTime = TimeInterval()
     var UIUpdateTimer = Timer()
     
     
-    // Changing variable
+    // MARK: Variable that can be changed during the recording session
     var currentFrequency: Int = 0
     var recordID: Int = 0
     
     
-    // For motion getting
+    // MARK: Variables for getting motions
     let motion = CMMotionManager()
     var motionUpdateTimer = Timer()
     
