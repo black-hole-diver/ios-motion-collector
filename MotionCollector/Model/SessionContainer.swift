@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: Container for session data
 class SessionContainer: Codable {
     var nextSessionid: Int?
     var currentSessionDate: Date?

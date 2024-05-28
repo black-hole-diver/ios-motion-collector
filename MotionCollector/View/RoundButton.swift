@@ -1,6 +1,5 @@
 import UIKit
 
-// MARK: Set up Button UI
 @IBDesignable
 class CircleButton: UIButton {
     @IBInspectable var isRound: Bool = true {

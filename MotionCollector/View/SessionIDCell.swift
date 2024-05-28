@@ -1,6 +1,5 @@
 import UIKit
 
-// MARK: A custom UITableViewCell to display label id
 class SessionIDCell: UITableViewCell {
     
     @IBOutlet weak var idLabel: UILabel!

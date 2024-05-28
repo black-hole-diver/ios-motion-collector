@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// MARK: CharacteristicName Extension
 extension CharacteristicName {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CharacteristicName> {
@@ -13,7 +12,6 @@ extension CharacteristicName {
 
 }
 
-// MARK: Methods to create accessors for toCharacteristic
 extension CharacteristicName {
     
     @objc(addToCharacteristicObject:)

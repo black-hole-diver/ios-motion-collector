@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// MARK: Characteristic Extension
 extension Characteristic {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Characteristic> {

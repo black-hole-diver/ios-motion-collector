@@ -1,6 +1,5 @@
 import UIKit
 
-// MARK: A custom UITableViewCell to display session info
 class ItemSessionCell: UITableViewCell {
     
     @IBOutlet weak var idSessionLabel: UILabel!

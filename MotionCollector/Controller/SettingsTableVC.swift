@@ -9,8 +9,6 @@ protocol SettingsTableVCDelegate: class {
 
 class SettingsTableVC: UITableViewController {
     
-    
-    // Controlls outlets
     @IBOutlet weak var currentPeriodLabel: UILabel!
     @IBOutlet weak var periodSlider: UISlider!
     @IBOutlet weak var recordNumberLabel: UILabel!
@@ -24,16 +22,13 @@ class SettingsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Update start current value
         periodChangedNumber(periodSlider)
     }
     
     
     @IBAction func periodChangedNumber(_ sender: UISlider) {
-        // Change moving mode
         sender.setValue(sender.value.rounded(.down), animated: true)
         
-        // Update label and send value
         let newValue = Int (sender.value)
         currentPeriodLabel.text = "\(newValue)"
         delegate?.periodChangedNumberSettingsDelegate(newValue)
@@ -41,10 +36,8 @@ class SettingsTableVC: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if indexPath.section == 0 && indexPath.row == 1 {
             delegate?.changeIDpressed()
         }
     }
-    
 }

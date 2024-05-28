@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// MARK: SensorData Extension
 extension SensorData {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SensorData> {
         return NSFetchRequest<SensorData>(entityName: "SensorData")
@@ -14,7 +13,6 @@ extension SensorData {
 
 }
 
-// MARK: Methods to create accessors for toCharacteristic
 extension SensorData {
 
     @objc(addToCharacteristicObject:)

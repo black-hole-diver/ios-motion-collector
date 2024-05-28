@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// MARK: Session Extension
 extension Session {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Session> {
@@ -18,7 +17,6 @@ extension Session {
 
 }
 
-// MARK: Methods to create accessors for toSensorData
 extension Session {
 
     @objc(addToSensorDataObject:)

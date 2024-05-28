@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// MARK: Sensor Extension
 extension Sensor {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Sensor> {
         return NSFetchRequest<Sensor>(entityName: "Sensor")
@@ -12,7 +11,6 @@ extension Sensor {
 
 }
 
-// MARK: Methods to add and remove
 extension Sensor {
     @objc(addToSensorDataObject:)
     @NSManaged public func addToToSensorData(_ value: SensorData)

@@ -132,10 +132,8 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let entities = ["Session", "Characteristic", "SensorData"]
         
         for entity in entities{
-            // Initialize Fetch Request
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
             
-            // Configure Fetch Request
             fetchRequest.includesPropertyValues = false
             
             do {
@@ -145,12 +143,9 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     context.delete(item)
                 }
                 
-                // Save Changes
                 try context.save()
                 
             } catch {
-                // Error Handling
-                // ...
             }
         }
         
@@ -185,14 +180,13 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let fileName = "Motion-sessions_\(sessionDate).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,timeIntervalSince1970,gyr_x,gyr_y,gyr_z,acc_x,acc_y,acc_z,WatchTimestamp,WatchtImeIntervalSince1970, gyr_x,gyr_y,gyr_z,acc_x,acc_y,acc_z\n"
+        var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,UNIXTimestamp,gyr_x,gyr_y,gyr_z,acc_x,acc_y,acc_z,WatchTimestamp,WatchUNIXTimestamp, gyr_x,gyr_y,gyr_z,uacc_x,uacc_y,uacc_z\n"
         
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
         
         let fetchRequestSession = NSFetchRequest<NSFetchRequestResult>(entityName: "Session")
         
-        // Add Sort Descriptors
         let sortDescriptorSession = NSSortDescriptor(key: "id", ascending: true)
         fetchRequestSession.sortDescriptors = [sortDescriptorSession]
         
@@ -208,7 +202,6 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let sessionFrequency = "\(session.frequency)"
                 let recordID = "\(session.recordID)"
                 let sessionInfoString = "\(sessionID),\(sessionDate),\(sessionDuration),\(sessionFrequency),\(recordID),"
-                // let sessionType = session.type
                 
                 var SensorOutputs1 = [SensorOutput]()
                 var SensorOutputs2 = [SensorOutput]()
@@ -226,7 +219,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                         SensorOutputs2.append(sensorOutput)
                     }
                     
-                }// for sensorData
+                }
                 
                 let maxArray = max(SensorOutputs1.count, SensorOutputs2.count)
                 
@@ -314,7 +307,6 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
 }
-
 
 extension FileManager {
     func clearTmpDirectory() {

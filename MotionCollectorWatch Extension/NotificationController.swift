@@ -6,7 +6,6 @@ import UserNotifications
 class NotificationController: WKUserNotificationInterfaceController {
 
     override init() {
-        // MARK: Initialize variables here.
         super.init()
     }
 

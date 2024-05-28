@@ -80,5 +80,4 @@ class RecordIDVC: UITableViewController {
             cell.accessoryType = .none
         }
     }
-    
 }
